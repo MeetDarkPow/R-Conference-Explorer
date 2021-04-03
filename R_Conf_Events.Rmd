@@ -38,7 +38,7 @@ valueBox(total_events, icon = "fa-calendar-alt", color = "orange")
 ### Total RSVP Count
 
 ```{r}
-valueBox(total_rsvp, icon = "fa-thumbs-up", color = "yellow")
+valueBox(total_rsvp, icon = "fa-thumbs-up", color = "green")
 ```
 
 ## Row
@@ -50,7 +50,7 @@ daily_count <- as.data.frame(table(event_data$local_date))
 plot1 <- daily_count %>%
   plot_ly(x = ~Var1,
           y = ~Freq,
-          color = "orange",
+          color = "purple",
           type = 'bar') %>%
   layout(xaxis = list(title = "Date"), yaxis = list(title = "Number of Events", 
                                                     range = c(0, max(daily_count$Freq))))
@@ -64,7 +64,8 @@ loc_count <- as.data.frame(table(event_data$venue_city))
 plot2 <- loc_count %>%
   plot_ly(x = ~Freq[-1],
           y = ~Var1[-1],
-          color = "red",
+          marker = list(color = 'rgba(38, 24, 74, 0.8)',
+                      line = list(color = 'rgb(248, 248, 249)', width = 1)),
           type = 'bar', orientation = 'h') %>%
   layout(xaxis = list(title = "Number of Events"), yaxis = list(title = "Location of Events"))
 plot2
