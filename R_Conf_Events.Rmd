@@ -1,0 +1,41 @@
+---
+title: "R Conference Evens Explorer"
+author: "Meet Bhatnagar"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: flatly
+    social: [ "twitter", "facebook", "menu"]
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(crosstalk)
+library(DT)
+library(leaflet)
+
+event_data <- readRDS("R_Events.rds")
+event_data <- bind_rows(event_data, .id = "column_label")
+sd <- SharedData$new(event_data)
+
+total_events <- length(unique(event_data$id))
+```
+
+# Interactives
+
+## Row
+
+## 
+
+# World Map - Events
+
+## Column {data-width = 400}
+
+### 
+
+
+
+
+
+
