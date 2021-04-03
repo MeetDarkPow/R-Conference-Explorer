@@ -3,7 +3,8 @@ title: "R Conference Evens Explorer"
 author: "Meet Bhatnagar"
 output: 
   flexdashboard::flex_dashboard:
-    theme: flatly
+    orientation: rows
+    vertical_layout: fill
     social: [ "twitter", "facebook", "menu"]
     source_code: embed
 ---
@@ -14,26 +15,76 @@ library(dplyr)
 library(crosstalk)
 library(DT)
 library(leaflet)
+library(plotly)
 
 event_data <- readRDS("R_Events.rds")
 event_data <- bind_rows(event_data, .id = "column_label")
 sd <- SharedData$new(event_data)
 
 total_events <- length(unique(event_data$id))
+total_rsvp <- sum(event_data$yes_rsvp_count)
 ```
 
-# Interactives
+# Interactives 
 
 ## Row
 
-## 
+### Total R Conference Events
 
-# World Map - Events
+```{r}
+valueBox(total_events, icon = "fa-calendar-alt", color = "orange")
+```
+
+### Total RSVP Count
+
+```{r}
+valueBox(total_rsvp, icon = "fa-thumbs-up", color = "yellow")
+```
+
+## Row
+
+### Daily Events Count
+
+```{r}
+daily_count <- as.data.frame(table(event_data$local_date))
+plot1 <- daily_count %>%
+  plot_ly(x = ~Var1,
+          y = ~Freq,
+          color = "orange",
+          type = 'bar') %>%
+  layout(xaxis = list(title = "Date"), yaxis = list(title = "Number of Events", 
+                                                    range = c(0, max(daily_count$Freq))))
+plot1
+```
+
+### Location Vs Event Count
+
+```{r}
+loc_count <- as.data.frame(table(event_data$venue_city))
+plot2 <- loc_count %>%
+  plot_ly(x = ~Freq[-1],
+          y = ~Var1[-1],
+          color = "red",
+          type = 'bar', orientation = 'h') %>%
+  layout(xaxis = list(title = "Number of Events"), yaxis = list(title = "Location of Events"))
+plot2
+```
+
+# World Map - Events {data-orientation=columns} 
 
 ## Column {data-width = 400}
 
-### 
+### Chat A
+```{r}
 
+```
+
+## Column {data-width = 600}
+
+### Chart B
+```{r}
+
+```
 
 
 
