@@ -23,6 +23,7 @@ sd <- SharedData$new(event_data)
 
 total_events <- length(unique(event_data$id))
 total_rsvp <- sum(event_data$yes_rsvp_count)
+# table(event_data$venue_country)
 ```
 
 # Interactives 
