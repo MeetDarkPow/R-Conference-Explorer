@@ -135,7 +135,7 @@ sd %>%
       
       "<tr>",
       "<tr>",
-      "<th>RSVP Count</th>",
+      "<th>RSVP Count </th>",
       "<th>", filter_event_data$yes_rsvp_count, "</th>",
       "</tr>",
       
@@ -147,7 +147,7 @@ sd %>%
       
       "<tr>",
       "<tr>",
-      "<th>Coordinates</th>",
+      "<th>Coordinates </th>",
       "<th>", filter_event_data$venue_lat, ", ", filter_event_data$venue_lon, "</th>",
       "</tr>"
     ),  # end popup()
