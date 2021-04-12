@@ -1,5 +1,5 @@
 ---
-title: "R Conference Evens Explorer"
+title: "R Conference Events Explorer"
 author: "Meet Bhatnagar"
 output: 
   flexdashboard::flex_dashboard:
